@@ -4,20 +4,14 @@
 
 class AtbashCypher {
   def letterAdjust(input: Char): Char = {
-    if(input.isLower) {
-      ('z' - (input - 'a')).toChar
-    }
-    else {
-      ('Z' - (input - 'A')).toChar
+    input match {
+      case letter if letter.isLower => ('z' - (letter - 'a')).toChar
+      case letter if letter.isUpper => ('Z' - (letter - 'A')).toChar
+      case _ => input
     }
   }
 
   def toCypher(input: String): String = {
-   input.map(x =>
-     if(x.isLetter) {
-       letterAdjust(x);
-     } else {
-       x
-     }).toString
+   input.map(x => letterAdjust(x))
   }
 }
