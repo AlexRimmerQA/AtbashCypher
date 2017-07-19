@@ -3,17 +3,21 @@
  */
 
 class AtbashCypher {
- def toCypher(input: String): String = {
+  def letterAdjust(input: Char): Char = {
+    if(input.isLower) {
+      ('z' - (input - 'a')).toChar
+    }
+    else {
+      ('Z' - (input - 'A')).toChar
+    }
+  }
+
+  def toCypher(input: String): String = {
    input.map(x =>
      if(x.isLetter) {
-       if(x.isLower) {
-         ('z' - (x - 'a')).toChar
-       } else {
-         ('Z' - (x - 'A')).toChar
-       }
+       letterAdjust(x);
      } else {
        x
-     }
-   ).toString
- }
+     }).toString
+  }
 }
